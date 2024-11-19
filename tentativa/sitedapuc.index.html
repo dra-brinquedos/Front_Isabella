@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adidas - Loja de Tênis</title>
+    <style>
+        /* Estilos básicos */
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        
+        /* Cabeçalho com imagem de fundo */
+        header {
+            background-image: url('imagens/flor.png'); /* Substitua 'caminho/da/imagem.jpg' pelo caminho da sua imagem */
+            background-size: cover;
+            background-position: center;
+            color: #f4f4f4; /* Vermelho vinho para o texto */
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        /* Menu */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #990000; /* Vermelho vinho para o fundo */
+        }
+        nav a {
+            color: #fff; /* Branco para o texto */
+            padding: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Carrossel */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Botões do Carrossel */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(128, 0, 0, 0.8); /* Vermelho vinho com transparência */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .carousel-btn.left { left: 10px; }
+        .carousel-btn.right { right: 10px; }
+        
+        /* Filtros */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            background-color: #eee;
+        }
+        .filter { display: flex; flex-direction: column; }
+
+        /* Seção de tênis */
+        .sneakers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .sneaker {
+            background-color: #fff;
+            width: 200px;
+            margin: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            display: none;
+        }
+        .sneaker img { width: 100%; height: auto; }
+        
+        /* Rodapé */
+        footer {
+            background-color: #990000; /* Vermelho vinho */
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Adidas - Loja de Tênis</h1>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Masculino</a>
+        <a href="#">Feminino</a>
+        <a href="#">Novidades</a>
+    </nav>
+
+    <!-- Carrossel de Imagens -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="https://via.placeholder.com/800x250?text=T%C3%AAnis+Adidas+1" alt="Imagem 1">
+            <img src="https://via.placeholder.com/800x250?text=T%C3%AAnis+Adidas+2" alt="Imagem 2">
+            <img src="https://via.placeholder.com/800x250?text=T%C3%AAnis+Adidas+3" alt="Imagem 3">
+        </div>
+        <button class="carousel-btn left" onclick="prevSlide()">&#10094;</button>
+        <button class="carousel-btn right" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <!-- Filtros -->
+    <section class="filters">
+        <div class="filter">
+            <label for="modelFilter">Modelo:</label>
+            <select id="modelFilter" onchange="filterSneakers()">
+                <option value="all">Todos</option>
+                <option value="samba">Samba</option>
+                <option value="gazelle">Gazelle</option>
+                <option value="adi2000">Adi 2000</option>
+                <option value="superstar">Superstar</option>
+                <option value="campus">Campus</option>
+            </select>
+        </div>
+
+        <div class="filter">
+            <label for="sizeFilter">Tamanho:</label>
+            <select id="sizeFilter" onchange="filterSneakers()">
+                <option value="all">Todos</option>
+                <option value="36-37">36-37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+            </select>
+        </div>
+
+        <div class="filter">
+            <label for="colorFilter">Cor:</label>
+            <select id="colorFilter" onchange="filterSneakers()">
+                <option value="all">Todas</option>
+                <option value="branco">Branco</option>
+                <option value="preto">Preto</option>
+                <option value="rosa">rosa</option>
+                <option value="verde">verde</option>
+                <option value="azul">azul</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Seção de Tênis -->
+    <section class="sneakers">
+        <div class="sneaker" data-model="samba" data-size="38" data-color="branco">
+            <img src="https://via.placeholder.com/200x200" alt="Adidas Samba">
+            <h2>Samba</h2>
+            <p>R$ 499,90</p>
+            <button>Comprar</button>
+        </div>
+        <!-- Adicione outros produtos conforme necessário -->
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Adidas. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Carrossel
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel img');
+        
+        function showSlide(index) {
+            if (index >= slides.length) currentIndex = 0;
+            else if (index < 0) currentIndex = slides.length - 1;
+            else currentIndex = index;
+
+            const offset = -currentIndex * 100;
+            document.querySelector('.carousel').style.transform = translateX(${offset}%);
+        }
+
+        function nextSlide() { showSlide(currentIndex + 1); }
+        function prevSlide() { showSlide(currentIndex - 1); }
+
+        // Filtros
+        function filterSneakers() {
+            const model = document.getElementById("modelFilter").value;
+            const size = document.getElementById("sizeFilter").value;
+            const color = document.getElementById("colorFilter").value;
+            const sneakers = document.querySelectorAll(".sneaker");
+
+            sneakers.forEach(sneaker => {
+                const sneakerModel = sneaker.getAttribute("data-model");
+                const sneakerSize = sneaker.getAttribute("data-size");
+                const sneakerColor = sneaker.getAttribute("data-color");
+
+                const modelMatch = model === "all" || model === sneakerModel;
+                const sizeMatch = size === "all" || size === sneakerSize;
+                const colorMatch = color === "all" || color === sneakerColor;
+
+                sneaker.style.display = modelMatch && sizeMatch && colorMatch ? "block" : "none";
+            });
+        }
+
+        // Auto-play para o carrossel
+        setInterval(() => { nextSlide(); }, 3000);
+    </script>
+</body>
+</html>
